@@ -79,14 +79,28 @@ jobs:
         if: ${{ vars.SITE_URL != '' }}
         env:
           SITE_URL: ${{ vars.SITE_URL }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
+          case "$SITE_URL" in
+            http://*|https://*) ;;
+            *) echo "::error::SITE_URL must start with https:// (got '$SITE_URL')"; exit 1;;
+          esac
+          host=$(echo "$SITE_URL" | sed -E 's#^https?://([^/:]+).*#\1#')
+          ip=$(getent hosts "$host" | awk '{print $1; exit}' || true)
+          if [ -z "$ip" ]; then
+            echo "::error::DNS for '$host' does not resolve yet. Files ARE deployed; add an A record for $host pointing to your server, then re-run this job."
+            exit 1
+          fi
+          echo "$host resolves to $ip"
+          [ -n "$SSH_HOST" ] && [ "$ip" != "$SSH_HOST" ] && echo "::warning::$host points to $ip, not the deploy server $SSH_HOST"
           for i in 1 2 3; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL/?v=${GITHUB_SHA::7}")
-            echo "HTTP $code"
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "$SITE_URL/?v=${GITHUB_SHA::7}" || true)
+            echo "Attempt $i: HTTP ${code:-no response}"
             [ "$code" = "200" ] && exit 0
             sleep 5
           done
-          echo "::error::Site did not return 200"; exit 1
+          echo "::error::$SITE_URL did not return 200. Check the SSL certificate and that DEPLOY_PATH is the site's root."
+          exit 1
 
       - name: Clean up key
         if: always()
