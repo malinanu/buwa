@@ -30,4 +30,4 @@ The name appears on the opening screen, in the letter and on the pass. Without i
 
 ## Deploy
 
-Serve the folder as-is from any static host (Cloudflare Pages, GitHub Pages, Netlify, or Nginx). The `music.mp3` file benefits from long cache headers.
+Pushes to `main` deploy automatically to the CloudPanel server through GitHub Actions. See [DEPLOY.md](DEPLOY.md) for the one-time server and secrets setup.
