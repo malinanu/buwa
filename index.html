@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#060709">
+<meta name="format-detection" content="telephone=no">
+<title>Buwa — Title Reveal</title>
+<link rel="preload" as="image" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Jost:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<style>
+/* VOICE: cinematic, poetic, hushed — an invitation to the first moment of a film.
+   IDEA: the production house mark — crimson and white on black, warmed by champagne gold.
+   PICTURE: the logo mark on the opening card, The Grand Maitland at dusk, and a gold line drawing of a protest rising behind the verses.
+   COLOUR and TYPE: Ayanna Yata brand — black #060709, crimson #b7102a, white, with champagne gold #d4af6e; Abhaya Libre (Sinhala + Latin) over Jost, system Sinhala fallbacks.
+   LAYOUT: mobile first — one centred column sized for a phone, widening only above 700px. */
+:root{color-scheme:dark;--bg:#060709;--bg2:#111216;--ink:#f7f3f2;--mute:#b9b3b4;--rose:#b7102a;--rose2:#d4af6e;--gold:#ecd5a4;--line:rgba(255,255,255,.16);
+  --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
+*{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Jost,"Noto Sans Sinhala","Sinhala Sangam MN","Iskoola Pota",system-ui,-apple-system,Roboto,sans-serif;overflow-x:hidden}
+body.locked{overflow:hidden;height:100%}
+h1,h2,h3,h4,.si{font-family:"Abhaya Libre","Noto Serif Sinhala","Sinhala Sangam MN","Iskoola Pota",Georgia,serif;font-weight:700;margin:0;line-height:1.1}
+h1,h2,h3{text-wrap:balance}
+img{max-width:100%;display:block}
+a{color:inherit}
+.band{padding:56px calc(20px + var(--sar)) 56px calc(20px + var(--sal));text-align:center}
+.wrap{max-width:640px;margin:0 auto}
+.label{font-size:14px;color:var(--rose2);margin:0 0 12px}
+.btn{display:-webkit-inline-box;display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--rose2);background:var(--rose);color:#fff;font:600 16px/1 Jost,system-ui,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.btn{border-color:#d4223f}.btn:active{background:#8e0b20}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.t1{font-size:34px}
+
+/* gate */
+#gate{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:center;background:var(--bg);transition:opacity .8s}
+#gate.gone{opacity:0;pointer-events:none}
+#gate:before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 40%,rgba(183,16,42,.28),rgba(6,7,9,0) 65%)}
+.gtext .mark,.close img{mix-blend-mode:lighten}.gtext .mark{width:84px;height:auto;margin:0 auto 18px}@media (max-height:600px){.gtext .mark{width:64px;margin-bottom:10px}}
+.gtext{position:relative;text-align:center;padding:24px calc(24px + var(--sar)) calc(24px + var(--sab)) calc(24px + var(--sal));max-width:520px;transition:opacity .5s}
+.gtext .from{font-size:15px;color:var(--mute);margin:0 0 4px}
+.gtext h1{font-size:88px;font-size:clamp(72px,22vw,128px);color:#fff;line-height:1;text-shadow:0 0 40px rgba(183,16,42,.8)}
+.gtext h1 span{display:block;font-size:.36em;color:var(--rose2);margin-top:4px}
+.gtext .what{font-size:17px;margin:16px 0 4px}
+.gtext .for{font-size:15px;color:var(--gold);margin:0 0 28px}
+.hint{font-size:13px;color:var(--mute);margin:14px 0 0}
+.nw{white-space:nowrap}
+.skiplink{display:inline-block;font-family:inherit;margin-top:10px;padding:12px;font-size:14px;color:var(--mute);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:0 calc(20px + var(--sar)) calc(48px + var(--sab)) calc(20px + var(--sal));background:#0b0809;overflow:hidden}
+.hero picture,.hero img{position:absolute;top:0;left:0;width:100%;height:100%}
+.hero img{object-fit:cover;object-position:30% 50%;opacity:.8}
+.hero:after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(6,7,9,.1) 0%,rgba(6,7,9,.35) 40%,var(--bg) 92%)}
+.hin{position:relative;z-index:1;max-width:640px}
+.hero h2{font-size:96px;font-size:clamp(84px,26vw,150px);line-height:.95;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+.hero .en{font-size:17px;font-weight:600;color:var(--rose2);margin:8px 0 14px}
+.meta{font-size:16px;line-height:1.5}
+.meta b{color:var(--gold);font-weight:600}
+.meta span{display:inline-block;margin:0 8px}
+.cue{display:inline-block;margin-top:26px;padding:8px 16px;font-size:13px;color:var(--mute);text-decoration:none}
+.cue:after{content:"";display:block;width:1px;height:34px;margin:8px auto 0;background:linear-gradient(var(--rose2),transparent);animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* letter */
+.greet{font-size:17px;color:var(--mute);margin:0 auto 32px;max-width:34em}
+.art{position:relative;z-index:0;margin:0 0 -14px -20px;width:96%;max-width:440px;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 14%);mask-image:linear-gradient(to top,transparent 0,#000 14%)}
+.art img{width:100%;height:auto}
+.verses{position:relative;z-index:1}
+.vtrack{position:relative;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:12px;padding:4px 20px 6px;margin:0 -20px;scroll-padding:0 20px}
+.vtrack::-webkit-scrollbar{display:none}
+.verse{flex:0 0 84%;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:330px;padding:26px 14px 24px;border:1px solid var(--line);border-radius:18px;background:var(--bg2);text-align:center}
+.verse svg{width:92px;height:92px;margin-bottom:16px;fill:none;stroke:var(--rose2);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.verse svg .fill{fill:var(--rose);stroke:none}
+.verse .si{font-size:21px;font-size:clamp(19px,5.6vw,28px);color:#fff;line-height:1.55;margin:0}
+.verse .si span{display:block}
+.verse .tr{display:none;font-size:15px;line-height:1.55;color:var(--mute);margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);max-width:24em}
+.verses.en .verse .tr{display:block}
+.vctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}
+.vbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.vbtn:disabled{opacity:.3;cursor:default}
+.dots{display:flex;gap:8px}
+.dots button{width:8px;height:8px;padding:0;border:0;border-radius:4px;background:rgba(255,255,255,.25);cursor:pointer;transition:width .3s,background .3s}
+.dots button[aria-current="true"]{width:24px;background:var(--rose2)}
+.dots button:before{content:"";display:block;margin:-18px;width:44px;height:44px}
+.entog{margin-top:14px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:14px/1 Jost,system-ui,sans-serif;cursor:pointer}
+.entog[aria-pressed="true"]{color:var(--ink);border-color:var(--rose2)}
+
+/* countdown */
+.when .date{font-size:17px;color:var(--gold);margin:10px 0 28px}
+.cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-gap:8px;gap:8px;max-width:480px;margin:0 auto 28px}
+.cd div{padding:16px 2px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.cd b{display:block;font:700 34px/1 "Abhaya Libre",Georgia,serif;font-size:clamp(28px,9vw,46px);color:#fff;font-variant-numeric:tabular-nums}
+.cd span{font-size:13px;color:var(--mute)}
+.note{font-size:13px;color:var(--mute);margin:12px 0 0}
+
+/* programme */
+.prog{background:var(--bg2)}
+.prog ol{list-style:none;margin:28px auto 0;padding:0;max-width:480px;text-align:left}
+.prog li{display:grid;grid-template-columns:5.8em minmax(0,1fr);grid-gap:12px;gap:12px;padding:18px 0;border-top:1px solid var(--line)}
+.prog li:last-child{border-bottom:1px solid var(--line)}
+.prog time{font:700 19px/1.3 "Abhaya Libre",Georgia,serif;color:var(--gold);white-space:nowrap}
+.prog strong{display:block;font-size:17px;font-weight:600}
+.prog small{color:var(--mute);font-size:15px}
+
+/* venue */
+.venue{text-align:center}
+.vimg{position:relative;height:300px;overflow:hidden;background:#0b0809}
+.vimg img{width:100%;height:100%;object-fit:cover}
+.vimg:after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,var(--bg) 0%,transparent 30%,transparent 60%,var(--bg) 100%)}
+.vin{padding:8px calc(20px + var(--sar)) 56px calc(20px + var(--sal))}
+.venue h3{color:#fff}
+.addr{font-size:17px;color:var(--rose2);margin:8px 0 24px}
+
+/* ticket */
+.ticket{display:grid;grid-template-columns:minmax(0,1fr) 64px;max-width:520px;margin:26px auto 0;text-align:left;border-radius:14px;overflow:hidden;background:#f7f3f2;color:#14090b;box-shadow:0 26px 60px -30px rgba(0,0,0,.9)}
+.tmain{position:relative;padding:20px 16px 18px 18px;border-right:2px dashed rgba(42,26,31,.25)}
+.tmain:before,.tmain:after{content:"";position:absolute;right:-13px;width:24px;height:24px;border-radius:50%;background:var(--bg)}
+.tmain:before{top:-12px}.tmain:after{bottom:-12px}
+.ttop{font-size:13px;color:#7a1020;margin:0}
+.ticket h4{font-size:27px;margin:4px 0 2px;color:#b7102a}
+.tsub{font-size:14px;margin:0 0 14px}
+.ticket dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-gap:10px 14px;gap:10px 14px;margin:0}
+.ticket dt{font-size:13px;color:#6e6466}
+.ticket dd{margin:0;font-weight:600;font-size:15px;line-height:1.35}
+.stub{display:flex;align-items:center;justify-content:center;background:#b7102a;color:#fff}
+.stub b{font:700 19px/1 "Abhaya Libre",Georgia,serif;letter-spacing:.06em;-webkit-writing-mode:vertical-rl;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+.present{font-size:14px;color:var(--mute);margin:16px 0 0}
+
+/* close */
+.close img{width:150px;height:auto;margin:0 auto 24px}
+.close p{color:var(--mute);margin:10px 0 0}
+footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13px;color:var(--mute);border-top:1px solid var(--line)}
+
+#snd{position:fixed;right:calc(14px + var(--sar));bottom:calc(14px + var(--sab));z-index:40;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(28,20,24,.9);color:var(--ink);cursor:pointer;display:none;align-items:center;justify-content:center;padding:0}
+#snd.on{display:flex}
+#snd svg{width:22px;height:22px}
+
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
+.js .rv.shown{opacity:1;transform:none}
+
+/* larger screens */
+@media (min-width:700px){
+  .band{padding-top:96px;padding-bottom:96px}
+  .t1{font-size:46px}
+  .verse{flex-basis:100%;padding:36px 40px 32px;min-height:360px}
+  .verse svg{width:104px;height:104px}
+  .art{margin:0 auto -18px;width:460px;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 14%),linear-gradient(to right,transparent 0,#000 16%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to top,transparent 0,#000 14%),linear-gradient(to right,transparent 0,#000 16%);mask-composite:intersect}
+  .vimg{height:460px}
+  .vin{padding-bottom:96px}
+  .ticket{grid-template-columns:minmax(0,1fr) 110px}
+  .tmain{padding:26px 26px 22px}
+  .ticket h4{font-size:32px}
+  .stub b{font-size:22px}
+  .prog li{grid-template-columns:7.5em minmax(0,1fr);gap:18px}
+  .prog time{font-size:22px}
+}
+@media (max-width:359px){.gtext h1{font-size:64px}.cd span{font-size:11px}.tmain{padding-left:14px}.ticket{grid-template-columns:minmax(0,1fr) 52px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+</style>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Jost:wght@400;600&display=swap"></noscript>
+<script>document.documentElement.className+=' js'</script>
+</head>
+<body class="locked">
+
+<div id="gate" role="dialog" aria-label="Invitation">
+  <div class="gtext">
+    <img class="mark" src="logo.webp" width="320" height="514" alt="Ayanna Yata Films">
+    <p class="from">Ayanna Yata Films cordially invites you to the</p>
+    <h1 class="si">බුවා<span>Buwa</span></h1>
+    <p class="what">Title Reveal &amp; Muhurath Ceremony</p>
+    <p class="for">Specially for <span class="gname">our distinguished guest</span></p>
+    <button class="btn" id="open" type="button">Open invitation</button>
+    <p class="hint" id="hint">Sound on for music</p>
+    <button class="skiplink" id="skipNow" type="button">Open without music</button>
+  </div>
+</div>
+
+<main>
+  <section class="hero">
+    <img src="maitland.webp" srcset="maitland.webp 720w, maitland-l.webp 1080w" sizes="100vw" width="720" height="1280" alt="The Grand Maitland, Colombo 07, lit at dusk" decoding="async">
+    <div class="hin">
+      <p class="label">Ayanna Yata Films presents</p>
+      <h2 class="si">බුවා</h2>
+      <p class="en">Buwa · Title Reveal &amp; Muhurath Ceremony</p>
+      <p class="meta"><span><b>Sun, 29 Nov 2026</b></span><span><b>5:00 PM</b></span><br><span>The Grand Maitland, Colombo 07</span></p>
+      <a class="cue" href="#letter">Scroll</a>
+    </div>
+  </section>
+
+  <section class="band" id="letter">
+    <div class="wrap">
+      <p class="label rv">Dear <span class="gname">distinguished guest</span>,</p>
+      <p class="greet rv">You are warmly invited to join us for the opening moment of our film — the reveal of its title and the auspicious Muhurath that begins its journey.</p>
+      <div class="art rv"><img src="protest.svg" width="905" height="913" loading="lazy" decoding="async" alt="Line drawing of a protest — raised hands, a fist, a megaphone and a crimson flag"></div>
+      <div class="verses rv" id="verses" role="region" aria-roledescription="carousel" aria-label="Verses from Buwa">
+        <div class="vtrack" id="vtrack">
+          <div class="verse" role="group" aria-label="Verse 1 of 3">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><path class="fill" d="M50 84C26 68 14 54 14 38c0-11 8-19 18-19 8 0 14 5 18 11 4-6 10-11 18-11 10 0 18 8 18 19 0 16-12 30-36 46z"/><path d="M50 84C26 68 14 54 14 38c0-11 8-19 18-19 8 0 14 5 18 11 4-6 10-11 18-11 10 0 18 8 18 19 0 16-12 30-36 46z"/><path d="M50 30l-6 14 9 6-7 13 4 9"/></svg>
+            <p class="si"><span>ආදරය අරගලයක් නම්</span><span>අරගලයක් මැද</span><span>ආදරයක් හමුවිය නොහැකිද</span></p>
+            <p class="tr">If love is a struggle, can love not be found in the midst of a struggle?</p>
+          </div>
+          <div class="verse" role="group" aria-label="Verse 2 of 3">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><ellipse class="fill" cx="50" cy="18" rx="17" ry="5"/><ellipse cx="50" cy="18" rx="17" ry="5"/><circle cx="50" cy="40" r="12"/><path d="M22 90c0-18 12-30 28-30s28 12 28 30"/><path d="M50 60v30"/><path d="M8 40h6M86 40h6M14 18l5 4M86 18l-5 4"/></svg>
+            <p class="si"><span>මිනිසාම දෙවියන් වේනම්</span><span>දෙවියන්ට මිනිසෙකු</span><span>විය නොහැකි ද</span></p>
+            <p class="tr">If man himself becomes a god, can a god not become a man?</p>
+          </div>
+          <div class="verse" role="group" aria-label="Verse 3 of 3">
+            <svg viewBox="0 0 100 100" aria-hidden="true"><path class="fill" d="M50 14c7 9 10 15 10 21a10 10 0 0 1-20 0c0-6 3-12 10-21z"/><path d="M50 14c7 9 10 15 10 21a10 10 0 0 1-20 0c0-6 3-12 10-21z"/><path d="M50 45v6"/><path d="M18 54h64c-2 10-14 17-32 17S20 64 18 54z"/><path d="M42 71v8h16v-8"/><path d="M32 88h36l-6-9H38z"/></svg>
+            <p class="si"><span>භක්තියට වැඩි ආදරය</span><span>වෙනුවෙන් පැමිණෙන්න</span></p>
+            <p class="tr">Come, for a love greater than devotion.</p>
+          </div>
+        </div>
+        <div class="vctl">
+          <button class="vbtn" id="vprev" type="button" aria-label="Previous verse">&#8249;</button>
+          <div class="dots" id="vdots"><button type="button" aria-label="Verse 1"></button><button type="button" aria-label="Verse 2"></button><button type="button" aria-label="Verse 3"></button></div>
+          <button class="vbtn" id="vnext" type="button" aria-label="Next verse">&#8250;</button>
+        </div>
+        <button class="entog" id="entog" type="button" aria-pressed="false">Show English translation</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band when">
+    <div class="wrap">
+      <p class="label rv">Save the date</p>
+      <h3 class="si t1 rv">බුවා චිත්‍රපටියේ සමාරම්භක මොහොතට</h3>
+      <p class="date rv"><span class="nw">Sunday, 29 November 2026</span> · <span class="nw">5:00 PM</span></p>
+      <div class="cd rv">
+        <div><b id="cdD">00</b><span>Days</span></div>
+        <div><b id="cdH">00</b><span>Hours</span></div>
+        <div><b id="cdM">00</b><span>Mins</span></div>
+        <div><b id="cdS">00</b><span>Secs</span></div>
+      </div>
+      <a class="btn rv" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Buwa%20%E2%80%93%20Title%20Reveal%20%26%20Muhurath%20Ceremony&amp;dates=20261129T113000Z/20261129T143000Z&amp;location=The%20Grand%20Maitland%2C%20Colombo%2007&amp;details=Ayanna%20Yata%20Films%20invites%20you%20to%20the%20title%20reveal%20and%20Muhurath%20ceremony%20of%20Buwa.">Add to calendar</a>
+      <p class="note" id="cdNote">Save the evening to your calendar</p>
+    </div>
+  </section>
+
+  <section class="band prog">
+    <div class="wrap">
+      <p class="label rv">Programme</p>
+      <h3 class="t1 rv">The evening</h3>
+      <ol>
+        <li class="rv"><time>5:00 PM</time><div><strong>Guest arrival</strong><small>Welcome at The Grand Maitland</small></div></li>
+        <li class="rv"><time>To follow</time><div><strong>Title reveal</strong><small>The first look at Buwa</small></div></li>
+        <li class="rv"><time>To follow</time><div><strong>Muhurath ceremony</strong><small>The auspicious beginning of the film</small></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="venue">
+    <div class="vimg"><img src="colombo.webp" width="720" height="720" loading="lazy" decoding="async" alt="Colombo 07 from above at night"></div>
+    <div class="vin">
+      <p class="label rv">ස්ථානය · Venue</p>
+      <h3 class="t1 rv">The Grand Maitland</h3>
+      <p class="addr rv">Colombo 07, Sri Lanka</p>
+      <a class="btn ghost rv" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Grand%20Maitland%20Colombo%2007">Get directions</a>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <p class="label rv">Your pass</p>
+      <h3 class="t1 rv">Admit one</h3>
+      <div class="ticket rv">
+        <div class="tmain">
+          <p class="ttop">Ayanna Yata Films</p>
+          <h4>Buwa</h4>
+          <p class="tsub">Title Reveal &amp; Muhurath Ceremony</p>
+          <dl>
+            <div><dt>Guest</dt><dd class="gname">Distinguished Guest</dd></div>
+            <div><dt>Date</dt><dd>Sun, 29 Nov 2026</dd></div>
+            <div><dt>Arrival</dt><dd>5:00 PM</dd></div>
+            <div><dt>Venue</dt><dd>The Grand Maitland</dd></div>
+          </dl>
+        </div>
+        <div class="stub"><b>ADMIT ONE</b></div>
+      </div>
+      <p class="present rv">Please present this invitation at the entrance.</p>
+    </div>
+  </section>
+
+  <section class="band close">
+    <div class="wrap">
+      <img class="rv" src="logo.webp" width="320" height="514" loading="lazy" decoding="async" alt="Ayanna Yata Films logo">
+      <h3 class="t1 rv">We look forward to welcoming you</h3>
+      <p class="rv">to the first moment of Buwa.</p>
+    </div>
+  </section>
+</main>
+<footer>Ayanna Yata Films · 29 November 2026 · The Grand Maitland, Colombo 07</footer>
+
+<button id="snd" type="button" aria-label="Mute music">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path id="wav" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/><path id="xx" d="m16 9 6 6m0-6-6 6" style="display:none"/></svg>
+</button>
+<audio id="mus" preload="none" loop></audio>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var gate=$('gate'),mus=$('mus'),snd=$('snd'),wav=$('wav'),xx=$('xx');
+  var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  var slow=!!(conn&&(conn.saveData||/(^|-)2g$/.test(conn.effectiveType||'')));
+  if(slow){$('hint').textContent='Music is off to save data — tap the speaker to play it';}
+
+  // Personal guest name from the link, e.g. ...#Malin-Jayaweera
+  try{
+    var h=decodeURIComponent((location.hash||'').slice(1));
+    if(/^[A-Za-z][A-Za-z0-9-]{1,60}$/.test(h)&&!/^(letter|settings|sidebar|customize|upgrade|downloads)$/i.test(h)){
+      var name=h.split('-').filter(Boolean).map(function(w){return w.charAt(0).toUpperCase()+w.slice(1)}).join(' ');
+      var els=document.querySelectorAll('.gname');for(var i=0;i<els.length;i++)els[i].textContent=name;
+    }
+  }catch(e){}
+
+  var player=mus,opened=false;
+  function setSnd(on){wav.style.display=on?'':'none';xx.style.display=on?'none':'';snd.setAttribute('aria-label',on?'Mute music':'Play music');}
+  function reveal(withMusic){
+    if(opened)return;opened=true;
+    gate.className+=' gone';document.body.className='';
+    snd.className='on';setSnd(false);
+    if(withMusic){
+      mus.src='music.mp3';mus.volume=.5;
+      var p=mus.play();if(p&&p.then)p.then(function(){setSnd(true)},function(){setSnd(false)});else setSnd(true);
+    }
+    setTimeout(function(){gate.style.display='none'},900);
+  }
+  $('open').addEventListener('click',function(){reveal(!slow)});
+  $('skipNow').addEventListener('click',function(){reveal(false)});
+
+  snd.addEventListener('click',function(){
+    if(!mus.getAttribute('src')){mus.src='music.mp3';mus.volume=.5;}
+    if(player.paused){var p=player.play();if(p&&p.then)p.then(function(){setSnd(true)},function(){});else setSnd(true);}
+    else{player.pause();setSnd(false);}
+  });
+  // Pause when the tab is hidden (saves battery and data)
+  var wasPlaying=false;
+  document.addEventListener('visibilitychange',function(){
+    if(!player||!opened)return;
+    if(document.hidden){wasPlaying=!player.paused;player.pause();}
+    else if(wasPlaying){player.play().catch(function(){setSnd(false)});}
+  });
+
+  // Verse carousel
+  var tr=$('vtrack'),slides=tr.querySelectorAll('.verse'),dots=$('vdots').querySelectorAll('button'),cur=0;
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));var sl=slides[i];tr.scrollTo({left:sl.offsetLeft-(tr.clientWidth-sl.clientWidth)/2,behavior:'smooth'});}
+  function mark(){var c=tr.scrollLeft+tr.clientWidth/2,best=0,bd=1e9;for(var i=0;i<slides.length;i++){var m=slides[i].offsetLeft+slides[i].clientWidth/2,d=Math.abs(m-c);if(d<bd){bd=d;best=i}}
+    cur=best;for(var j=0;j<dots.length;j++)dots[j].setAttribute('aria-current',j===cur?'true':'false');$('vprev').disabled=cur===0;$('vnext').disabled=cur===slides.length-1;}
+  var st;tr.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(mark,60)},{passive:true});
+  $('vprev').addEventListener('click',function(){go(cur-1)});$('vnext').addEventListener('click',function(){go(cur+1)});
+  for(var di=0;di<dots.length;di++)(function(n){dots[n].addEventListener('click',function(){go(n)})})(di);
+  tr.setAttribute('tabindex','0');tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+  $('entog').addEventListener('click',function(){var on=this.getAttribute('aria-pressed')!=='true';this.setAttribute('aria-pressed',String(on));this.textContent=on?'Hide English translation':'Show English translation';$('verses').className=$('verses').className.replace(/\s*\ben\b/g,'')+(on?' en':'');});
+  mark();window.addEventListener('resize',mark);
+
+  // Countdown to Sun 29 Nov 2026, 5:00 PM Sri Lanka time (UTC 11:30)
+  var target=Date.UTC(2026,10,29,11,30,0),timer;
+  function p2(n){return (n<10?'0':'')+n}
+  function tick(){
+    var d=Math.max(0,target-Date.now());
+    var D=Math.floor(d/864e5);d%=864e5;var H=Math.floor(d/36e5);d%=36e5;var M=Math.floor(d/6e4);var S=Math.floor(d%6e4/1e3);
+    $('cdD').textContent=p2(D);$('cdH').textContent=p2(H);$('cdM').textContent=p2(M);$('cdS').textContent=p2(S);
+    if(target<=Date.now()){$('cdNote').textContent='The moment has arrived — welcome.';clearInterval(timer);}
+  }
+  tick();timer=setInterval(tick,1000);
+
+  // Reveal on scroll, with a fallback for older browsers
+  var rv=document.querySelectorAll('.rv'),k;
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.className+=' shown';io.unobserve(e.target)}})},{threshold:.12});
+    for(k=0;k<rv.length;k++)io.observe(rv[k]);
+  }else{for(k=0;k<rv.length;k++)rv[k].className+=' shown';}
+})();
+</script>
+</body>
+</html>
