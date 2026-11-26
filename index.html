@@ -51,6 +51,14 @@ a{color:inherit}
 .nw{white-space:nowrap}
 .skiplink{display:inline-block;font-family:inherit;margin-top:10px;padding:12px;font-size:14px;color:var(--mute);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
+.mr{font-size:.52em;letter-spacing:.06em;margin-right:.08em}
+.type .ch{position:relative}
+.js .type .ch{visibility:hidden}
+.js .type .ch.on{visibility:visible}
+.type .ch.cur:after{content:"";position:absolute;right:-.09em;top:.1em;bottom:.08em;width:.055em;min-width:2px;background:var(--rose2);animation:blink .9s steps(1) infinite}
+.type.start:before{content:"";display:inline-block;width:.055em;min-width:2px;height:.72em;background:var(--rose2);vertical-align:-.02em;animation:blink .9s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
 /* hero */
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:0 calc(20px + var(--sar)) calc(48px + var(--sab)) calc(20px + var(--sal));background:#0b0809;overflow:hidden}
 .hero picture,.hero img{position:absolute;top:0;left:0;width:100%;height:100%}
@@ -159,7 +167,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   .prog time{font-size:22px}
 }
 @media (max-width:359px){.gtext h1{font-size:64px}.cd span{font-size:11px}.tmain{padding-left:14px}.ticket{grid-template-columns:minmax(0,1fr) 52px}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}.js .type .ch{visibility:visible}.type .ch.cur:after,.type.start:before{display:none}}
 </style>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=Abhaya+Libre:wght@700&display=swap"></noscript>
 <script>document.documentElement.className+=' js'</script>
@@ -170,7 +178,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   <div class="gtext">
     <img class="mark" src="logo.webp" width="320" height="514" alt="Ayanna Yata Films">
     <p class="from">Ayanna Yata Films cordially invites you to the</p>
-    <h1>Mr.Buwa</h1>
+    <h1 class="type" aria-label="Mr.Buwa"><span class="mr">Mr.</span>Buwa</h1>
     <p class="what">Title Reveal &amp; Muhurath Ceremony</p>
     <p class="for">Specially for <span class="gname">our distinguished guest</span></p>
     <button class="btn" id="open" type="button">Open invitation</button>
@@ -184,7 +192,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
     <img src="maitland.webp" srcset="maitland.webp 720w, maitland-l.webp 1080w" sizes="100vw" width="720" height="1280" alt="The Grand Maitland, Colombo 07, lit at dusk" decoding="async">
     <div class="hin">
       <p class="label">Ayanna Yata Films presents</p>
-      <h2>Mr.Buwa</h2>
+      <h2 class="type" id="heroTitle" aria-label="Mr.Buwa"><span class="mr">Mr.</span>Buwa</h2>
       <p class="en">Title Reveal &amp; Muhurath Ceremony</p>
       <p class="meta"><span><b>Sun, 29 Nov 2026</b></span><span><b>5:00 PM</b></span><br><span>The Grand Maitland, Colombo 07</span></p>
       <a class="cue" href="#letter">Scroll</a>
@@ -269,7 +277,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       <div class="ticket rv">
         <div class="tmain">
           <p class="ttop">Ayanna Yata Films</p>
-          <h4>Mr.Buwa</h4>
+          <h4><span class="mr">Mr.</span>Buwa</h4>
           <p class="tsub">Title Reveal &amp; Muhurath Ceremony</p>
           <dl>
             <div><dt>Guest</dt><dd class="gname">Distinguished Guest</dd></div>
@@ -316,6 +324,43 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
     }
   }catch(e){}
 
+  // Typewriter title: wraps each letter so the centred layout never shifts while typing
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function prep(el){
+    if(el._chars)return el._chars;
+    var out=[];
+    (function walk(node){
+      var kids=[].slice.call(node.childNodes);
+      kids.forEach(function(k){
+        if(k.nodeType===3){
+          var f=document.createDocumentFragment();
+          k.nodeValue.split('').forEach(function(c){var sp=document.createElement('span');sp.className='ch';sp.setAttribute('aria-hidden','true');sp.textContent=c;f.appendChild(sp);out.push(sp)});
+          node.replaceChild(f,k);
+        }else if(k.nodeType===1){walk(k)}
+      });
+    })(el);
+    el._chars=out;return out;
+  }
+  function typeIt(el,delay){
+    var chars=prep(el);
+    if(reduce){chars.forEach(function(c){c.className='ch on'});return;}
+    chars.forEach(function(c){c.className='ch'});
+    el.className=el.className.replace(/\s*\b(done|start)\b/g,'')+' start';
+    var i=0;
+    function step(){
+      if(i>0)chars[i-1].className='ch on';
+      if(i===0)el.className=el.className.replace(/\s*\bstart\b/,'');
+      chars[i].className='ch on cur';
+      var ch=chars[i].textContent;i++;
+      if(i<chars.length)setTimeout(step,ch==='.'?320:110+Math.random()*70);
+      else{el.className+=' done';var last=chars[i-1];setTimeout(function(){if(last.className.indexOf('cur')>-1)last.className='ch on'},2700);}
+    }
+    setTimeout(step,delay);
+  }
+  var gateTitle=document.querySelector('.gtext h1'),heroTitle=$('heroTitle');
+  prep(heroTitle);
+  typeIt(gateTitle,500);
+
   var player=mus,opened=false;
   function setSnd(on){wav.style.display=on?'':'none';xx.style.display=on?'none':'';snd.setAttribute('aria-label',on?'Mute music':'Play music');}
   function reveal(withMusic){
@@ -326,6 +371,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       mus.src='music.mp3';mus.volume=.5;
       var p=mus.play();if(p&&p.then)p.then(function(){setSnd(true)},function(){setSnd(false)});else setSnd(true);
     }
+    typeIt(heroTitle,650);
     setTimeout(function(){gate.style.display='none'},900);
   }
   $('open').addEventListener('click',function(){reveal(!slow)});
