@@ -51,7 +51,7 @@ a{color:inherit}
 .nw{white-space:nowrap}
 .skiplink{display:inline-block;font-family:inherit;margin-top:10px;padding:12px;font-size:14px;color:var(--mute);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
-.mr{font-size:.52em;letter-spacing:.06em;margin-right:.08em}
+.mr{font-size:.52em;letter-spacing:.08em;margin-right:.22em}
 .type .ch{position:relative}
 .js .type .ch{visibility:hidden}
 .js .type .ch.on{visibility:visible}
@@ -178,7 +178,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   <div class="gtext">
     <img class="mark" src="logo.webp" width="320" height="514" alt="Ayanna Yata Films">
     <p class="from">Ayanna Yata Films cordially invites you to the</p>
-    <h1 class="type" aria-label="Mr.Buwa"><span class="mr">Mr.</span>Buwa</h1>
+    <h1 class="type" aria-label="Mr Buwa"><span class="mr">MR</span>BUWA</h1>
     <p class="what">Title Reveal &amp; Muhurath Ceremony</p>
     <p class="for">Specially for <span class="gname">our distinguished guest</span></p>
     <button class="btn" id="open" type="button">Open invitation</button>
@@ -192,7 +192,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
     <img src="maitland.webp" srcset="maitland.webp 720w, maitland-l.webp 1080w" sizes="100vw" width="720" height="1280" alt="The Grand Maitland, Colombo 07, lit at dusk" decoding="async">
     <div class="hin">
       <p class="label">Ayanna Yata Films presents</p>
-      <h2 class="type" id="heroTitle" aria-label="Mr.Buwa"><span class="mr">Mr.</span>Buwa</h2>
+      <h2 class="type" id="heroTitle" aria-label="Mr Buwa"><span class="mr">MR</span>BUWA</h2>
       <p class="en">Title Reveal &amp; Muhurath Ceremony</p>
       <p class="meta"><span><b>Sun, 29 Nov 2026</b></span><span><b>5:00 PM</b></span><br><span>The Grand Maitland, Colombo 07</span></p>
       <a class="cue" href="#letter">Scroll</a>
@@ -277,7 +277,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       <div class="ticket rv">
         <div class="tmain">
           <p class="ttop">Ayanna Yata Films</p>
-          <h4><span class="mr">Mr.</span>Buwa</h4>
+          <h4><span class="mr">MR</span>BUWA</h4>
           <p class="tsub">Title Reveal &amp; Muhurath Ceremony</p>
           <dl>
             <div><dt>Guest</dt><dd class="gname">Distinguished Guest</dd></div>
@@ -352,7 +352,8 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       if(i===0)el.className=el.className.replace(/\s*\bstart\b/,'');
       chars[i].className='ch on cur';
       var ch=chars[i].textContent;i++;
-      if(i<chars.length)setTimeout(step,ch==='.'?320:110+Math.random()*70);
+      var gap=(chars[i]&&chars[i].parentNode!==chars[i-1].parentNode)?520:240;
+      if(i<chars.length)setTimeout(step,gap);
       else{el.className+=' done';var last=chars[i-1];setTimeout(function(){if(last.className.indexOf('cur')>-1)last.className='ch on'},2700);}
     }
     setTimeout(step,delay);
