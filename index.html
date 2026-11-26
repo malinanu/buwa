@@ -6,35 +6,36 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#060709">
 <meta name="format-detection" content="telephone=no">
-<title>Buwa — Title Reveal</title>
+<title>Mr.Buwa — Title Reveal</title>
 <link rel="preload" as="image" href="logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Jost:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=Abhaya+Libre:wght@700&display=swap" media="print" onload="this.media='all'">
 <style>
 /* VOICE: cinematic, poetic, hushed — an invitation to the first moment of a film.
    IDEA: the production house mark — crimson and white on black, warmed by champagne gold.
    PICTURE: the logo mark on the opening card, The Grand Maitland at dusk, and a gold line drawing of a protest rising behind the verses.
-   COLOUR and TYPE: Ayanna Yata brand — black #060709, crimson #b7102a, white, with champagne gold #d4af6e; Abhaya Libre (Sinhala + Latin) over Jost, system Sinhala fallbacks.
+   COLOUR and TYPE: Ayanna Yata brand — black #060709, crimson #b7102a, white, with champagne gold #d4af6e; Cinzel titles over Inter text; Abhaya Libre only for the Sinhala verses.
    LAYOUT: mobile first — one centred column sized for a phone, widening only above 700px. */
 :root{color-scheme:dark;--bg:#060709;--bg2:#111216;--ink:#f7f3f2;--mute:#b9b3b4;--rose:#b7102a;--rose2:#d4af6e;--gold:#ecd5a4;--line:rgba(255,255,255,.16);
   --sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--sal:env(safe-area-inset-left,0px);--sar:env(safe-area-inset-right,0px)}
 *{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Jost,"Noto Sans Sinhala","Sinhala Sangam MN","Iskoola Pota",system-ui,-apple-system,Roboto,sans-serif;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,"Noto Sans Sinhala","Sinhala Sangam MN","Iskoola Pota",system-ui,-apple-system,Roboto,sans-serif;overflow-x:hidden}
 body.locked{overflow:hidden;height:100%}
-h1,h2,h3,h4,.si{font-family:"Abhaya Libre","Noto Serif Sinhala","Sinhala Sangam MN","Iskoola Pota",Georgia,serif;font-weight:700;margin:0;line-height:1.1}
+h1,h2,h3,h4{font-family:Cinzel,"Trajan Pro",Georgia,serif;font-weight:600;margin:0;line-height:1.15;letter-spacing:.02em}
+.si{font-family:"Abhaya Libre","Noto Serif Sinhala","Sinhala Sangam MN","Iskoola Pota",Georgia,serif;font-weight:700;margin:0;line-height:1.1}
 h1,h2,h3{text-wrap:balance}
 img{max-width:100%;display:block}
 a{color:inherit}
 .band{padding:56px calc(20px + var(--sar)) 56px calc(20px + var(--sal));text-align:center}
 .wrap{max-width:640px;margin:0 auto}
 .label{font-size:14px;color:var(--rose2);margin:0 0 12px}
-.btn{display:-webkit-inline-box;display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--rose2);background:var(--rose);color:#fff;font:600 16px/1 Jost,system-ui,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.btn{display:-webkit-inline-box;display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 28px;border-radius:999px;border:1px solid var(--rose2);background:var(--rose);color:#fff;font:600 15px/1 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;cursor:pointer;white-space:nowrap;touch-action:manipulation}
 .btn{border-color:#d4223f}.btn:active{background:#8e0b20}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-.t1{font-size:34px}
+.t1{font-size:27px;font-size:clamp(24px,7vw,40px)}
 
 /* gate */
 #gate{position:fixed;top:0;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;justify-content:center;background:var(--bg);transition:opacity .8s}
@@ -43,8 +44,7 @@ a{color:inherit}
 .gtext .mark,.close img{mix-blend-mode:lighten}.gtext .mark{width:84px;height:auto;margin:0 auto 18px}@media (max-height:600px){.gtext .mark{width:64px;margin-bottom:10px}}
 .gtext{position:relative;text-align:center;padding:24px calc(24px + var(--sar)) calc(24px + var(--sab)) calc(24px + var(--sal));max-width:520px;transition:opacity .5s}
 .gtext .from{font-size:15px;color:var(--mute);margin:0 0 4px}
-.gtext h1{font-size:88px;font-size:clamp(72px,22vw,128px);color:#fff;line-height:1;text-shadow:0 0 40px rgba(183,16,42,.8)}
-.gtext h1 span{display:block;font-size:.36em;color:var(--rose2);margin-top:4px}
+.gtext h1{font-size:46px;font-size:clamp(40px,12.5vw,92px);font-weight:700;color:#fff;line-height:1.05;text-shadow:0 0 40px rgba(183,16,42,.8)}
 .gtext .what{font-size:17px;margin:16px 0 4px}
 .gtext .for{font-size:15px;color:var(--gold);margin:0 0 28px}
 .hint{font-size:13px;color:var(--mute);margin:14px 0 0}
@@ -57,7 +57,7 @@ a{color:inherit}
 .hero img{object-fit:cover;object-position:30% 50%;opacity:.8}
 .hero:after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(6,7,9,.1) 0%,rgba(6,7,9,.35) 40%,var(--bg) 92%)}
 .hin{position:relative;z-index:1;max-width:640px}
-.hero h2{font-size:96px;font-size:clamp(84px,26vw,150px);line-height:.95;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+.hero h2{font-size:52px;font-size:clamp(44px,14vw,112px);font-weight:700;line-height:1;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.6)}
 .hero .en{font-size:17px;font-weight:600;color:var(--rose2);margin:8px 0 14px}
 .meta{font-size:16px;line-height:1.5}
 .meta b{color:var(--gold);font-weight:600}
@@ -87,14 +87,14 @@ a{color:inherit}
 .dots button{width:8px;height:8px;padding:0;border:0;border-radius:4px;background:rgba(255,255,255,.25);cursor:pointer;transition:width .3s,background .3s}
 .dots button[aria-current="true"]{width:24px;background:var(--rose2)}
 .dots button:before{content:"";display:block;margin:-18px;width:44px;height:44px}
-.entog{margin-top:14px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:14px/1 Jost,system-ui,sans-serif;cursor:pointer}
+.entog{margin-top:14px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:500 14px/1 Inter,system-ui,sans-serif;cursor:pointer}
 .entog[aria-pressed="true"]{color:var(--ink);border-color:var(--rose2)}
 
 /* countdown */
 .when .date{font-size:17px;color:var(--gold);margin:10px 0 28px}
 .cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-gap:8px;gap:8px;max-width:480px;margin:0 auto 28px}
 .cd div{padding:16px 2px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
-.cd b{display:block;font:700 34px/1 "Abhaya Libre",Georgia,serif;font-size:clamp(28px,9vw,46px);color:#fff;font-variant-numeric:tabular-nums}
+.cd b{display:block;font:600 32px/1 Inter,system-ui,sans-serif;letter-spacing:-.02em;font-size:clamp(28px,9vw,46px);color:#fff;font-variant-numeric:tabular-nums}
 .cd span{font-size:13px;color:var(--mute)}
 .note{font-size:13px;color:var(--mute);margin:12px 0 0}
 
@@ -103,7 +103,7 @@ a{color:inherit}
 .prog ol{list-style:none;margin:28px auto 0;padding:0;max-width:480px;text-align:left}
 .prog li{display:grid;grid-template-columns:5.8em minmax(0,1fr);grid-gap:12px;gap:12px;padding:18px 0;border-top:1px solid var(--line)}
 .prog li:last-child{border-bottom:1px solid var(--line)}
-.prog time{font:700 19px/1.3 "Abhaya Libre",Georgia,serif;color:var(--gold);white-space:nowrap}
+.prog time{font:600 17px/1.4 Inter,system-ui,sans-serif;color:var(--gold);white-space:nowrap}
 .prog strong{display:block;font-size:17px;font-weight:600}
 .prog small{color:var(--mute);font-size:15px}
 
@@ -122,13 +122,13 @@ a{color:inherit}
 .tmain:before,.tmain:after{content:"";position:absolute;right:-13px;width:24px;height:24px;border-radius:50%;background:var(--bg)}
 .tmain:before{top:-12px}.tmain:after{bottom:-12px}
 .ttop{font-size:13px;color:#7a1020;margin:0}
-.ticket h4{font-size:27px;margin:4px 0 2px;color:#b7102a}
+.ticket h4{font-size:24px;font-weight:700;margin:4px 0 2px;color:#b7102a}
 .tsub{font-size:14px;margin:0 0 14px}
 .ticket dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-gap:10px 14px;gap:10px 14px;margin:0}
 .ticket dt{font-size:13px;color:#6e6466}
 .ticket dd{margin:0;font-weight:600;font-size:15px;line-height:1.35}
 .stub{display:flex;align-items:center;justify-content:center;background:#b7102a;color:#fff}
-.stub b{font:700 19px/1 "Abhaya Libre",Georgia,serif;letter-spacing:.06em;-webkit-writing-mode:vertical-rl;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+.stub b{font:700 17px/1 Cinzel,Georgia,serif;letter-spacing:.12em;-webkit-writing-mode:vertical-rl;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
 .present{font-size:14px;color:var(--mute);margin:16px 0 0}
 
 /* close */
@@ -146,7 +146,6 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
 /* larger screens */
 @media (min-width:700px){
   .band{padding-top:96px;padding-bottom:96px}
-  .t1{font-size:46px}
   .verse{flex-basis:100%;padding:36px 40px 32px;min-height:360px}
   .verse svg{width:104px;height:104px}
   .art{margin:0 auto -18px;width:460px;-webkit-mask-image:linear-gradient(to top,transparent 0,#000 14%),linear-gradient(to right,transparent 0,#000 16%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to top,transparent 0,#000 14%),linear-gradient(to right,transparent 0,#000 16%);mask-composite:intersect}
@@ -154,7 +153,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   .vin{padding-bottom:96px}
   .ticket{grid-template-columns:minmax(0,1fr) 110px}
   .tmain{padding:26px 26px 22px}
-  .ticket h4{font-size:32px}
+  .ticket h4{font-size:30px}
   .stub b{font-size:22px}
   .prog li{grid-template-columns:7.5em minmax(0,1fr);gap:18px}
   .prog time{font-size:22px}
@@ -162,7 +161,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
 @media (max-width:359px){.gtext h1{font-size:64px}.cd span{font-size:11px}.tmain{padding-left:14px}.ticket{grid-template-columns:minmax(0,1fr) 52px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 </style>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@700&family=Jost:wght@400;600&display=swap"></noscript>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=Abhaya+Libre:wght@700&display=swap"></noscript>
 <script>document.documentElement.className+=' js'</script>
 </head>
 <body class="locked">
@@ -171,7 +170,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   <div class="gtext">
     <img class="mark" src="logo.webp" width="320" height="514" alt="Ayanna Yata Films">
     <p class="from">Ayanna Yata Films cordially invites you to the</p>
-    <h1 class="si">බුවා<span>Buwa</span></h1>
+    <h1>Mr.Buwa</h1>
     <p class="what">Title Reveal &amp; Muhurath Ceremony</p>
     <p class="for">Specially for <span class="gname">our distinguished guest</span></p>
     <button class="btn" id="open" type="button">Open invitation</button>
@@ -185,8 +184,8 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
     <img src="maitland.webp" srcset="maitland.webp 720w, maitland-l.webp 1080w" sizes="100vw" width="720" height="1280" alt="The Grand Maitland, Colombo 07, lit at dusk" decoding="async">
     <div class="hin">
       <p class="label">Ayanna Yata Films presents</p>
-      <h2 class="si">බුවා</h2>
-      <p class="en">Buwa · Title Reveal &amp; Muhurath Ceremony</p>
+      <h2>Mr.Buwa</h2>
+      <p class="en">Title Reveal &amp; Muhurath Ceremony</p>
       <p class="meta"><span><b>Sun, 29 Nov 2026</b></span><span><b>5:00 PM</b></span><br><span>The Grand Maitland, Colombo 07</span></p>
       <a class="cue" href="#letter">Scroll</a>
     </div>
@@ -197,7 +196,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       <p class="label rv">Dear <span class="gname">distinguished guest</span>,</p>
       <p class="greet rv">You are warmly invited to join us for the opening moment of our film — the reveal of its title and the auspicious Muhurath that begins its journey.</p>
       <div class="art rv"><img src="protest.svg" width="905" height="913" loading="lazy" decoding="async" alt="Line drawing of a protest — raised hands, a fist, a megaphone and a crimson flag"></div>
-      <div class="verses rv" id="verses" role="region" aria-roledescription="carousel" aria-label="Verses from Buwa">
+      <div class="verses rv" id="verses" role="region" aria-roledescription="carousel" aria-label="Verses from Mr.Buwa">
         <div class="vtrack" id="vtrack">
           <div class="verse" role="group" aria-label="Verse 1 of 3">
             <svg viewBox="0 0 100 100" aria-hidden="true"><path class="fill" d="M50 84C26 68 14 54 14 38c0-11 8-19 18-19 8 0 14 5 18 11 4-6 10-11 18-11 10 0 18 8 18 19 0 16-12 30-36 46z"/><path d="M50 84C26 68 14 54 14 38c0-11 8-19 18-19 8 0 14 5 18 11 4-6 10-11 18-11 10 0 18 8 18 19 0 16-12 30-36 46z"/><path d="M50 30l-6 14 9 6-7 13 4 9"/></svg>
@@ -228,7 +227,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
   <section class="band when">
     <div class="wrap">
       <p class="label rv">Save the date</p>
-      <h3 class="si t1 rv">බුවා චිත්‍රපටියේ සමාරම්භක මොහොතට</h3>
+      <h3 class="t1 rv">The opening moment of Mr.Buwa</h3>
       <p class="date rv"><span class="nw">Sunday, 29 November 2026</span> · <span class="nw">5:00 PM</span></p>
       <div class="cd rv">
         <div><b id="cdD">00</b><span>Days</span></div>
@@ -236,7 +235,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
         <div><b id="cdM">00</b><span>Mins</span></div>
         <div><b id="cdS">00</b><span>Secs</span></div>
       </div>
-      <a class="btn rv" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Buwa%20%E2%80%93%20Title%20Reveal%20%26%20Muhurath%20Ceremony&amp;dates=20261129T113000Z/20261129T143000Z&amp;location=The%20Grand%20Maitland%2C%20Colombo%2007&amp;details=Ayanna%20Yata%20Films%20invites%20you%20to%20the%20title%20reveal%20and%20Muhurath%20ceremony%20of%20Buwa.">Add to calendar</a>
+      <a class="btn rv" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Mr.Buwa%20%E2%80%93%20Title%20Reveal%20%26%20Muhurath%20Ceremony&amp;dates=20261129T113000Z/20261129T143000Z&amp;location=The%20Grand%20Maitland%2C%20Colombo%2007&amp;details=Ayanna%20Yata%20Films%20invites%20you%20to%20the%20title%20reveal%20and%20Muhurath%20ceremony%20of%20Mr.Buwa.">Add to calendar</a>
       <p class="note" id="cdNote">Save the evening to your calendar</p>
     </div>
   </section>
@@ -247,7 +246,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       <h3 class="t1 rv">The evening</h3>
       <ol>
         <li class="rv"><time>5:00 PM</time><div><strong>Guest arrival</strong><small>Welcome at The Grand Maitland</small></div></li>
-        <li class="rv"><time>To follow</time><div><strong>Title reveal</strong><small>The first look at Buwa</small></div></li>
+        <li class="rv"><time>To follow</time><div><strong>Title reveal</strong><small>The first look at Mr.Buwa</small></div></li>
         <li class="rv"><time>To follow</time><div><strong>Muhurath ceremony</strong><small>The auspicious beginning of the film</small></div></li>
       </ol>
     </div>
@@ -270,7 +269,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
       <div class="ticket rv">
         <div class="tmain">
           <p class="ttop">Ayanna Yata Films</p>
-          <h4>Buwa</h4>
+          <h4>Mr.Buwa</h4>
           <p class="tsub">Title Reveal &amp; Muhurath Ceremony</p>
           <dl>
             <div><dt>Guest</dt><dd class="gname">Distinguished Guest</dd></div>
@@ -289,7 +288,7 @@ footer{padding:24px 20px calc(80px + var(--sab));text-align:center;font-size:13p
     <div class="wrap">
       <img class="rv" src="logo.webp" width="320" height="514" loading="lazy" decoding="async" alt="Ayanna Yata Films logo">
       <h3 class="t1 rv">We look forward to welcoming you</h3>
-      <p class="rv">to the first moment of Buwa.</p>
+      <p class="rv">to the first moment of Mr.Buwa.</p>
     </div>
   </section>
 </main>

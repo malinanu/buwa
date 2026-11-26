@@ -1,6 +1,6 @@
-# Buwa — Title Reveal & Muhurath Ceremony
+# Mr.Buwa — Title Reveal & Muhurath Ceremony
 
-Invitation microsite for **Buwa** by Ayanna Yata Films.
+Invitation microsite for **Mr.Buwa** by Ayanna Yata Films.
 
 - **Date:** Sunday, 29 November 2026, 5:00 PM (Sri Lanka time)
 - **Venue:** The Grand Maitland, Colombo 07
